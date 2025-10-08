@@ -1,8 +1,8 @@
+import { useQuery } from "@tanstack/react-query";
 import css from "./MoviesSidebarFilters.module.css";
 
 import { useState } from "react";
-
-const DUMMY_GENRES = ["Action", "Si-Fi", "Horror", "Advanture", "Mystery"];
+import { getGenres } from "../../utils/http";
 
 type MoviesSidebarFiltersProps = {
     open: boolean;
@@ -10,6 +10,11 @@ type MoviesSidebarFiltersProps = {
 };
 
 function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
+    const { data } = useQuery({
+        queryKey: ["genres"],
+        queryFn: getGenres,
+    });
+
     return (
         <div className={`${css.filter} ${open ? css.open : ""}`}>
             <div onClick={onClose}></div>
@@ -20,9 +25,10 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
                 <h3>Filters</h3>
 
                 <FilterBlock title="Genre">
-                    {DUMMY_GENRES.map((genre) => (
-                        <FilterCheckbox key={genre} label={genre} />
-                    ))}
+                    {data &&
+                        data.map(({ name, id }) => (
+                            <FilterCheckbox key={id} label={name} />
+                        ))}
                 </FilterBlock>
 
                 <FilterBlock title="Raiting">

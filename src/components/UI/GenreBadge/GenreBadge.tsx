@@ -1,7 +1,11 @@
 import css from "./GenreBadge.module.css";
 
-function GenreBadge() {
-    return <div className={css.badge}>Mystery</div>;
+type GenreBadgeProps = {
+    title: string;
+};
+
+function GenreBadge({ title }: GenreBadgeProps) {
+    return <div className={css.badge}>{title}</div>;
 }
 
 export default GenreBadge;
