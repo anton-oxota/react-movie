@@ -6,6 +6,20 @@
 }
 
 :root {
-    --black: #1e2128ff;
+    --black: #1e2128;
     --violet: #522092;
+}
+
+body {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+button {
+    cursor: pointer;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }

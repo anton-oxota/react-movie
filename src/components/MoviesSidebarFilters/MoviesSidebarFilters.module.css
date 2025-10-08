@@ -1,0 +1,82 @@
+.filter {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+
+    display: grid;
+    grid-template-columns: 1fr auto;
+
+    backdrop-filter: blur(20px);
+
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all;
+}
+
+/* Filter open */
+.filter.open {
+    visibility: visible;
+    opacity: 1;
+}
+
+.filter.open .aside {
+    transform: translateX(0);
+}
+
+.aside {
+    --aside-width: 256px;
+
+    width: var(--aside-width);
+    height: 100vh;
+    padding: 16px;
+
+    background: #1e2128;
+    border-radius: 10px 0px 0px 10px;
+
+    position: relative;
+    transform: translateX(100%);
+    transition: 0.3s all;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.aside h3 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 600;
+}
+
+/* Filter Block */
+.filterBlock {
+    border-bottom: 1px solid #323743;
+}
+
+.filterBlock h4 {
+    font-size: 16px;
+    line-height: 26px;
+    font-weight: 500;
+}
+
+.filterBlockHeader {
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.filterBlockBody {
+    padding: 10px 0;
+}
+
+/* Filter Checkbox */
+.filterCheckbox {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
