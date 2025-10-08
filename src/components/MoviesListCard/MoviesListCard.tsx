@@ -5,11 +5,11 @@ import GenreBadge from "../UI/GenreBadge/GenreBadge";
 
 type MoviesListCardProps = Pick<
     MovieType,
-    "original_title" | "overview" | "genre_ids" | "poster_path"
+    "title" | "overview" | "genre_ids" | "poster_path"
 >;
 
 function MoviesListCard({
-    original_title,
+    title,
     genre_ids,
     overview,
     poster_path,
@@ -19,10 +19,10 @@ function MoviesListCard({
 
     return (
         <div className={css.card}>
-            <h2>{original_title}</h2>
+            <h2>{title}</h2>
             <img
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                alt={original_title}
+                alt={title}
             />
             <div className={css.info}>
                 <p>{overview}</p>
