@@ -1,0 +1,20 @@
+/* --- Info Item --- */
+.infoItem {
+    padding: 15px;
+    border-radius: 10px;
+    background: #1e2128;
+}
+
+.infoItem h4 {
+    margin-bottom: 14px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #bdc1ca;
+    text-transform: uppercase;
+}

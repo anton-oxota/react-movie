@@ -9,6 +9,8 @@
     border-radius: 10px;
     box-shadow: 0px 0px 1px #171a1f12, 0px 0px 2px #171a1f1f; /* shadow-xs */
 
+    text-decoration: none;
+
     position: relative;
     overflow: hidden;
 }

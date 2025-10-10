@@ -1,0 +1,26 @@
+/* --- Information */
+.information {
+    padding: 95px 0;
+    background: #171a1f;
+}
+
+.information h2 {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    color: #f3f4f6;
+}
+
+.informationWrapper {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(325px, 1fr));
+    gap: 24px;
+}
+
+.block {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}

@@ -1,4 +1,9 @@
 import css from "./MoviesFilters.module.css";
+
+import SearchIcon from "../../assets/icons/search.svg?react";
+import FilterIcon from "../../assets/icons/sliders-horizontal.svg?react";
+import SortIcon from "../../assets/icons/arrow-down-up.svg?react";
+
 import { useState } from "react";
 import MoviesSidebarFilters from "../MoviesSidebarFilters/MoviesSidebarFilters";
 
@@ -18,11 +23,18 @@ function MoviesFilters() {
             <div className={css.filters}>
                 <form className={css.search} action="">
                     <input type="text" placeholder="Search movies..." />
-                    <button type="submit">Search</button>
+                    <button type="submit">
+                        <SearchIcon />
+                        Search
+                    </button>
                 </form>
                 <div className={css.actions}>
-                    <button onClick={handleOpenFilters}>Filter</button>
-                    <button>Sort By</button>
+                    <button onClick={handleOpenFilters}>
+                        <FilterIcon /> Filter
+                    </button>
+                    <button>
+                        <SortIcon /> Sort By
+                    </button>
                 </div>
             </div>
 

@@ -1,0 +1,48 @@
+/* --- Overview --- */
+.overview {
+    padding: 95px 0;
+    background: #171a1f;
+}
+
+.overviewWrapper {
+    display: flex;
+    gap: 70px;
+}
+
+.overview h2 {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    color: #f3f4f6;
+}
+
+.overview p {
+    margin-top: 25px;
+    font-size: 18px;
+    line-height: 29px;
+    font-weight: 400;
+    color: #bdc1ca;
+}
+
+/* --- Poster --- */
+.poster {
+    width: 300px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.poster img {
+    width: 100%;
+}
+
+.posterImg {
+    position: relative;
+    z-index: 10;
+}
+
+.posterBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(40px);
+}

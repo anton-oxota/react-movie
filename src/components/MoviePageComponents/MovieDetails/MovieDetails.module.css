@@ -1,0 +1,45 @@
+/* --- Details --- */
+.details {
+    padding: 95px 0;
+}
+
+.details h2 {
+    font-size: 30px;
+    line-height: 36px;
+    font-weight: 700;
+    color: #f3f4f6;
+}
+
+.detailsWrapper {
+    margin-top: 45px;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+/* --- Text --- */
+.text {
+    font-size: 18px;
+    line-height: 28px;
+    font-weight: 500;
+    color: #f3f4f6;
+}
+
+/* --- Vote --- */
+.vote {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.vote svg {
+    stroke: #eab308;
+}
+
+.vote span {
+    line-height: 20px;
+    font-weight: 500;
+    color: #bdc1ca;
+    align-self: flex-start;
+}
