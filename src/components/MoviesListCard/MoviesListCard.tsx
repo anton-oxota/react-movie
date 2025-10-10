@@ -17,7 +17,6 @@ function MoviesListCard({
     id,
 }: MoviesListCardProps) {
     const genres = queryClient.getQueryData<GenreType[]>(["genres"]);
-    console.log(genres);
 
     return (
         <Link to={`movie/${id}`} className={css.card}>

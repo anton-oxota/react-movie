@@ -31,7 +31,7 @@ function MovieInformation({
                     <MovieInfoItem title="Genres" icon={<ScrollIcon />}>
                         <div className={css.block}>
                             {genres.map(({ name }) => (
-                                <Badge title={name} />
+                                <Badge key={name} title={name} />
                             ))}
                         </div>
                     </MovieInfoItem>
@@ -42,7 +42,7 @@ function MovieInformation({
                     >
                         <div className={css.block}>
                             {production_companies.map(({ name }) => (
-                                <Badge title={name} />
+                                <Badge key={name} title={name} />
                             ))}
                         </div>
                     </MovieInfoItem>
@@ -53,7 +53,7 @@ function MovieInformation({
                     >
                         <div className={css.block}>
                             {production_countries.map(({ name }) => (
-                                <Badge title={name} />
+                                <Badge key={name} title={name} />
                             ))}
                         </div>
                     </MovieInfoItem>
@@ -64,7 +64,10 @@ function MovieInformation({
                     >
                         <div className={css.block}>
                             {spoken_languages.map(({ english_name }) => (
-                                <Badge title={english_name} />
+                                <Badge
+                                    key={english_name}
+                                    title={english_name}
+                                />
                             ))}
                         </div>
                     </MovieInfoItem>
