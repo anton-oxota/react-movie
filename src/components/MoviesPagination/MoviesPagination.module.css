@@ -1,0 +1,47 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.sideButton {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    background: none;
+    border: none;
+
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #ffffff;
+
+    user-select: none;
+}
+
+.mainButton {
+    min-width: 36px;
+    height: 35px;
+    padding: 0 10px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: transparent;
+
+    border: none;
+    border-radius: 10px;
+
+    transition: 0.3s all;
+}
+
+.mainButton.active,
+.mainButton:hover {
+    background: #636ae8;
+}

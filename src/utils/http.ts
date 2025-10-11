@@ -49,8 +49,13 @@ export type MovieType = {
     vote_count: number;
 };
 
-export async function getMovies(): Promise<MovieType[]> {
-    const url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=1&sort_by=popularity.desc`;
+type GetMoviesResponse = {
+    results: MovieType[];
+    total_pages: number;
+};
+
+export async function getMovies(page: number): Promise<GetMoviesResponse> {
+    const url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
     const options = {
         method: "GET",
         headers: {
@@ -67,7 +72,7 @@ export async function getMovies(): Promise<MovieType[]> {
 
     const data = await response.json();
 
-    return data.results;
+    return data;
 }
 
 type ProductionCompany = {

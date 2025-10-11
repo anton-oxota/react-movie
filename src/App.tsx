@@ -4,6 +4,8 @@ import HomePage from "./pages/HomePage/HomePage";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./utils/http";
 import MoviePage from "./pages/MoviePage/MoviePage";
+import { Provider } from "react-redux";
+import store from "./store/store";
 
 const router = createBrowserRouter([
     { path: "", element: <HomePage /> },
@@ -12,9 +14,11 @@ const router = createBrowserRouter([
 
 function App() {
     return (
-        <QueryClientProvider client={queryClient}>
-            <RouterProvider router={router} />
-        </QueryClientProvider>
+        <Provider store={store}>
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={router} />
+            </QueryClientProvider>
+        </Provider>
     );
 }
 

@@ -5,11 +5,16 @@ import Loading from "../UI/Loading/Loading";
 
 import { getMovies } from "../../utils/http";
 import { useQuery } from "@tanstack/react-query";
+import { useAppSelector } from "../../store/store";
+import MoviesPagination from "../MoviesPagination/MoviesPagination";
 
 function MoviesList() {
+    const { page } = useAppSelector((state) => state.filterState);
+
+    // Fetch movies
     const { data, isPending } = useQuery({
-        queryKey: ["movies"],
-        queryFn: getMovies,
+        queryKey: ["movies", { page: page }],
+        queryFn: () => getMovies(page),
     });
 
     if (isPending) {
@@ -22,11 +27,17 @@ function MoviesList() {
 
     if (data) {
         return (
-            <div className={css.list}>
-                {data.map((movieData) => (
-                    <MoviesListCard key={movieData.id} {...movieData} />
-                ))}
-            </div>
+            <>
+                <div className={css.list}>
+                    {data.results.map((movieData) => (
+                        <MoviesListCard key={movieData.id} {...movieData} />
+                    ))}
+                </div>
+
+                <div className={css.pagination}>
+                    <MoviesPagination totalPages={500} activePage={page} />
+                </div>
+            </>
         );
     }
 }

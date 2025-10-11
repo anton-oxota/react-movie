@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { useAppSelector } from "../store";
 
 type InitialState = {
     page: number;
+    totalPages: number | null;
     genres: string[];
 };
 
 const initialState: InitialState = {
     page: 1,
+    totalPages: null,
     genres: [],
 };
 
@@ -18,11 +19,11 @@ const filterSlice = createSlice({
         setPage: (state, action) => {
             state.page = action.payload;
         },
+        setTotalPages: (state, action) => {
+            state.totalPages = action.payload;
+        },
     },
 });
 
 export default filterSlice.reducer;
-export const { setPage } = filterSlice.actions;
-
-export const useFilterSelector = () =>
-    useAppSelector((state) => state.filterState);
+export const { setPage, setTotalPages } = filterSlice.actions;

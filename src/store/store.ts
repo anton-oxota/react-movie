@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { useDispatch, useSelector } from "react-redux";
 
 import filterReducer from "./slices/filterSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 const store = configureStore({
     reducer: {
@@ -11,8 +11,8 @@ const store = configureStore({
 
 export default store;
 
-type AppDispatch = typeof store.dispatch;
 type RootState = ReturnType<typeof store.getState>;
+type AppDispatch = typeof store.dispatch;
 
-export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
 export const useAppSelector = useSelector.withTypes<RootState>();
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
