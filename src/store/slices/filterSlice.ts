@@ -1,9 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+
+import type { GenreType } from "../../utils/http";
 
 type InitialState = {
     page: number;
     totalPages: number | null;
-    genres: string[];
+    genres: GenreType[];
 };
 
 const initialState: InitialState = {
@@ -22,8 +24,25 @@ const filterSlice = createSlice({
         setTotalPages: (state, action) => {
             state.totalPages = action.payload;
         },
+        toggleGenre: (state, action: PayloadAction<GenreType>) => {
+            const isGenreExist = state.genres.some(
+                ({ id }) => id === action.payload.id
+            );
+
+            if (isGenreExist) {
+                state.genres = state.genres.filter(
+                    ({ id }) => id !== action.payload.id
+                );
+            } else {
+                state.genres.push(action.payload);
+            }
+        },
+        clearGenres: (state) => {
+            state.genres = [];
+        },
     },
 });
 
 export default filterSlice.reducer;
-export const { setPage, setTotalPages } = filterSlice.actions;
+export const { setPage, setTotalPages, toggleGenre, clearGenres } =
+    filterSlice.actions;

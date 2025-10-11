@@ -3,12 +3,15 @@
     padding: 16px;
     background-color: var(--black);
     border-radius: 10px;
+}
 
+.top {
+    width: 100%;
     display: flex;
     gap: 15px;
 }
 
-.filters button {
+.top button {
     padding: 0 12px;
 
     display: flex;
@@ -26,7 +29,7 @@
     transition: 0.3s all;
 }
 
-.filters button:hover {
+.top button:hover {
     background: #494ead;
 }
 
@@ -56,4 +59,13 @@
 
     display: flex;
     gap: 15px;
+}
+
+.activeFilters {
+    margin-top: 8px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    gap: 8px;
 }

@@ -54,8 +54,16 @@ type GetMoviesResponse = {
     total_pages: number;
 };
 
-export async function getMovies(page: number): Promise<GetMoviesResponse> {
-    const url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+export async function getMovies(
+    page: number,
+    genres?: number[]
+): Promise<GetMoviesResponse> {
+    let url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+
+    if (genres?.length) {
+        url += `&with_genres=${genres.join("%2C")}`;
+    }
+
     const options = {
         method: "GET",
         headers: {

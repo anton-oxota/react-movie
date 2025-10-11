@@ -1,0 +1,32 @@
+.filterBadge {
+    width: fit-content;
+    padding: 5px 10px;
+
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    background: #6b6e70ff;
+    border-radius: 9999px;
+
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+.filterBadge button {
+    width: 15px;
+    height: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: transparent;
+    border: none;
+}
+
+.filterBadge button svg {
+    stroke: #ffffff;
+}

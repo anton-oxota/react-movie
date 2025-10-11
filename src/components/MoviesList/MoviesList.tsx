@@ -7,18 +7,33 @@ import { getMovies } from "../../utils/http";
 import { useQuery } from "@tanstack/react-query";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import Pagination from "../Pagination/Pagination";
-import { setPage } from "../../store/slices/filterSlice";
+import { setPage, setTotalPages } from "../../store/slices/filterSlice";
+import { useEffect } from "react";
 
 function MoviesList() {
     const dispatch = useAppDispatch();
 
-    const { page } = useAppSelector((state) => state.filterState);
+    const { page, genres, totalPages } = useAppSelector(
+        (state) => state.filterState
+    );
 
     // Fetch movies
     const { data, isPending } = useQuery({
-        queryKey: ["movies", { page: page }],
-        queryFn: () => getMovies(page),
+        queryKey: ["movies", { page, genres }],
+        queryFn: () =>
+            getMovies(
+                page,
+                genres.map(({ id }) => id)
+            ),
     });
+
+    useEffect(() => {
+        if (data?.total_pages) {
+            dispatch(
+                setTotalPages(data.total_pages > 500 ? 500 : data.total_pages)
+            );
+        }
+    }, [dispatch, data?.total_pages]);
 
     function handleChangePage(page: number) {
         dispatch(setPage(page));
@@ -43,7 +58,7 @@ function MoviesList() {
 
                 <div className={css.pagination}>
                     <Pagination
-                        totalPages={500}
+                        totalPages={totalPages || 500}
                         activePage={page}
                         onChangePage={handleChangePage}
                     />

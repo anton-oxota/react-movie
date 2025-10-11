@@ -6,6 +6,14 @@ import LeftArrowIcon from "../../assets/icons/chevron-left.svg?react";
 function createButtons(totalPages: number, activePage: number) {
     const pageNumbersArray = [];
 
+    if (totalPages < 9) {
+        for (let i = 1; i <= totalPages; i++) {
+            pageNumbersArray.push(i);
+        }
+
+        return pageNumbersArray;
+    }
+
     if (activePage >= 5 && activePage <= totalPages - 5) {
         pageNumbersArray.push(1, "...");
         for (let i = activePage - 2; i <= activePage + 2; i++) {

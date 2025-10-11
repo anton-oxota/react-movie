@@ -1,8 +1,11 @@
-import { useQuery } from "@tanstack/react-query";
 import css from "./MoviesSidebarFilters.module.css";
 
+import { useQuery } from "@tanstack/react-query";
+
 import { useState } from "react";
-import { getGenres } from "../../utils/http";
+import { getGenres, type GenreType } from "../../utils/http";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import { setPage, toggleGenre } from "../../store/slices/filterSlice";
 
 type MoviesSidebarFiltersProps = {
     open: boolean;
@@ -10,10 +13,19 @@ type MoviesSidebarFiltersProps = {
 };
 
 function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
+    const dispatch = useAppDispatch();
+
     const { data } = useQuery({
         queryKey: ["genres"],
         queryFn: getGenres,
     });
+
+    const genres = useAppSelector((state) => state.filterState.genres);
+
+    function handleToggleGenre(genre: GenreType) {
+        dispatch(toggleGenre(genre));
+        dispatch(setPage(1));
+    }
 
     return (
         <div className={`${css.filter} ${open ? css.open : ""}`}>
@@ -26,8 +38,15 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
 
                 <FilterBlock title="Genre">
                     {data &&
-                        data.map(({ name, id }) => (
-                            <FilterCheckbox key={id} label={name} />
+                        data.map((genre) => (
+                            <FilterCheckbox
+                                key={genre.id}
+                                label={genre.name}
+                                onChange={() => handleToggleGenre(genre)}
+                                checked={genres.some(({ id }) => {
+                                    return id === genre.id;
+                                })}
+                            />
                         ))}
                 </FilterBlock>
 
@@ -67,12 +86,12 @@ function FilterBlock({ open = true, title, children }: FilterBlockProps) {
 
 type FilterCheckboxProps = {
     label: string;
-};
+} & React.InputHTMLAttributes<HTMLInputElement>;
 
-function FilterCheckbox({ label }: FilterCheckboxProps) {
+function FilterCheckbox({ label, ...inputProps }: FilterCheckboxProps) {
     return (
         <label className={css.filterCheckbox}>
-            <input type="checkbox" />
+            <input type="checkbox" {...inputProps} />
             {label}
         </label>
     );

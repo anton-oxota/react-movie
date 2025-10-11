@@ -81,3 +81,7 @@
     align-items: center;
     gap: 10px;
 }
+
+.filterCheckbox input {
+    accent-color: #636ae8;
+}
