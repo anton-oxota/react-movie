@@ -5,10 +5,13 @@ import Loading from "../UI/Loading/Loading";
 
 import { getMovies } from "../../utils/http";
 import { useQuery } from "@tanstack/react-query";
-import { useAppSelector } from "../../store/store";
-import MoviesPagination from "../MoviesPagination/MoviesPagination";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import Pagination from "../Pagination/Pagination";
+import { setPage } from "../../store/slices/filterSlice";
 
 function MoviesList() {
+    const dispatch = useAppDispatch();
+
     const { page } = useAppSelector((state) => state.filterState);
 
     // Fetch movies
@@ -16,6 +19,10 @@ function MoviesList() {
         queryKey: ["movies", { page: page }],
         queryFn: () => getMovies(page),
     });
+
+    function handleChangePage(page: number) {
+        dispatch(setPage(page));
+    }
 
     if (isPending) {
         return (
@@ -35,7 +42,11 @@ function MoviesList() {
                 </div>
 
                 <div className={css.pagination}>
-                    <MoviesPagination totalPages={500} activePage={page} />
+                    <Pagination
+                        totalPages={500}
+                        activePage={page}
+                        onChangePage={handleChangePage}
+                    />
                 </div>
             </>
         );

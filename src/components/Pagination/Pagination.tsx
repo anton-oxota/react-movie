@@ -1,9 +1,7 @@
-import css from "./MoviesPagination.module.css";
+import css from "./Pagination.module.css";
 
 import RightArrowIcon from "../../assets/icons/chevron-right.svg?react";
 import LeftArrowIcon from "../../assets/icons/chevron-left.svg?react";
-import { useAppDispatch } from "../../store/store";
-import { setPage } from "../../store/slices/filterSlice";
 
 function createButtons(totalPages: number, activePage: number) {
     const pageNumbersArray = [];
@@ -39,14 +37,17 @@ function createButtons(totalPages: number, activePage: number) {
 type MoviesPaginationType = {
     totalPages: number;
     activePage: number;
+    onChangePage: (page: number) => void;
 };
 
-function MoviesPagination({ totalPages, activePage }: MoviesPaginationType) {
-    const dispatch = useAppDispatch();
-
+function MoviesPagination({
+    totalPages,
+    activePage,
+    onChangePage,
+}: MoviesPaginationType) {
     function handleChangePage(page: number) {
         if (page === 0 || page === totalPages + 1) return;
-        dispatch(setPage(page));
+        onChangePage(page);
     }
 
     return (
