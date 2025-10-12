@@ -2,7 +2,9 @@ import css from "./MoviesListCard.module.css";
 
 import { queryClient, type GenreType, type MovieType } from "../../utils/http";
 import GenreBadge from "../UI/GenreBadge/GenreBadge";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
+import { useAppDispatch } from "../../store/store";
+import { clearGenres, toggleGenre } from "../../store/slices/filterSlice";
 
 type MoviesListCardProps = Pick<
     MovieType,
@@ -16,10 +18,22 @@ function MoviesListCard({
     poster_path,
     id,
 }: MoviesListCardProps) {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
     const genres = queryClient.getQueryData<GenreType[]>(["genres"]);
 
+    function handleSetGenre(genre: GenreType) {
+        dispatch(clearGenres());
+        dispatch(toggleGenre(genre));
+    }
+
+    function handleGoMoviePage() {
+        navigate(`movie/${id}`);
+    }
+
     return (
-        <Link to={`movie/${id}`} className={css.card}>
+        <div onClick={handleGoMoviePage} className={css.card}>
             <h2>{title}</h2>
             <img
                 src={`https://image.tmdb.org/t/p/w500${poster_path}`}
@@ -31,13 +45,22 @@ function MoviesListCard({
                     Genres:
                     {genres &&
                         genre_ids.map((id) => {
-                            const title = genres.find((g) => g.id === id)!.name;
-                            return <GenreBadge key={id} title={title} />;
+                            const genre = genres.find((g) => g.id === id)!;
+                            return (
+                                <GenreBadge
+                                    key={id}
+                                    title={genre.name}
+                                    onClick={(event) => {
+                                        event?.stopPropagation();
+                                        handleSetGenre(genre);
+                                    }}
+                                />
+                            );
                         })}
                 </div>
                 <div className={css.raiting}>STARS</div>
             </div>
-        </Link>
+        </div>
     );
 }
 

@@ -4,9 +4,16 @@ import FilmIcon from "../../../assets/icons/film.svg?react";
 import ScrollIcon from "../../../assets/icons/scroll-text.svg?react";
 import FlagIcon from "../../../assets/icons/flag.svg?react";
 import EarthIcon from "../../../assets/icons/earth.svg?react";
+
+import type { GenreType, MovieDetailsType } from "../../../utils/http";
+
 import MovieInfoItem from "../MovieInfoItem/MovieInfoItem";
-import type { MovieDetailsType } from "../../../utils/http";
 import Badge from "../../UI/Badge/Badge";
+import GenreBadge from "../../UI/GenreBadge/GenreBadge";
+
+import { clearGenres, toggleGenre } from "../../../store/slices/filterSlice";
+import { useAppDispatch } from "../../../store/store";
+import { useNavigate } from "react-router";
 
 type MovieInformationProps = Pick<
     MovieDetailsType,
@@ -22,6 +29,16 @@ function MovieInformation({
     production_countries,
     spoken_languages,
 }: MovieInformationProps) {
+    const dispatch = useAppDispatch();
+    const navigate = useNavigate();
+
+    function handleSetGenre(genre: GenreType) {
+        dispatch(clearGenres());
+        dispatch(toggleGenre(genre));
+
+        navigate("/");
+    }
+
     return (
         <div className={css.information}>
             <div className="container">
@@ -30,8 +47,12 @@ function MovieInformation({
                 <div className={css.informationWrapper}>
                     <MovieInfoItem title="Genres" icon={<ScrollIcon />}>
                         <div className={css.block}>
-                            {genres.map(({ name }) => (
-                                <Badge key={name} title={name} />
+                            {genres.map((genre) => (
+                                <GenreBadge
+                                    key={genre.name}
+                                    title={genre.name}
+                                    onClick={() => handleSetGenre(genre)}
+                                />
                             ))}
                         </div>
                     </MovieInfoItem>

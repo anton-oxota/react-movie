@@ -1,11 +1,14 @@
 import css from "./MoviesSidebarFilters.module.css";
 
+import CloseIcon from "../../assets/icons/x.svg?react";
+import ChevronDownIcon from "../../assets/icons/chevron-down.svg?react";
+
 import { useQuery } from "@tanstack/react-query";
 
 import { useState } from "react";
 import { getGenres, type GenreType } from "../../utils/http";
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { setPage, toggleGenre } from "../../store/slices/filterSlice";
+import { toggleGenre } from "../../store/slices/filterSlice";
 
 type MoviesSidebarFiltersProps = {
     open: boolean;
@@ -24,7 +27,6 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
 
     function handleToggleGenre(genre: GenreType) {
         dispatch(toggleGenre(genre));
-        dispatch(setPage(1));
     }
 
     return (
@@ -32,7 +34,7 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
             <div onClick={onClose}></div>
             <aside className={css.aside}>
                 <button onClick={onClose} className={css.closeButton}>
-                    Close
+                    <CloseIcon />
                 </button>
                 <h3>Filters</h3>
 
@@ -75,7 +77,9 @@ function FilterBlock({ open = true, title, children }: FilterBlockProps) {
         <div className={css.filterBlock}>
             <div className={css.filterBlockHeader}>
                 <h4>{title}</h4>
-                <button onClick={toggleOpen}>Open</button>
+                <button className={css.filterBlockButton} onClick={toggleOpen}>
+                    <ChevronDownIcon className={isOpen ? css.blockOpen : ""} />
+                </button>
             </div>
             {isOpen ? (
                 <div className={css.filterBlockBody}>{children}</div>

@@ -25,6 +25,9 @@ const filterSlice = createSlice({
             state.totalPages = action.payload;
         },
         toggleGenre: (state, action: PayloadAction<GenreType>) => {
+            // Reset page
+            state.page = 1;
+
             const isGenreExist = state.genres.some(
                 ({ id }) => id === action.payload.id
             );
@@ -38,6 +41,9 @@ const filterSlice = createSlice({
             }
         },
         clearGenres: (state) => {
+            // Reset page
+            state.page = 1;
+
             state.genres = [];
         },
     },

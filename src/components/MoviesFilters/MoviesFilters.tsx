@@ -9,11 +9,7 @@ import MoviesSidebarFilters from "../MoviesSidebarFilters/MoviesSidebarFilters";
 import FilterBadge from "../UI/FilterBadge/FilterBadge";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import type { GenreType } from "../../utils/http";
-import {
-    clearGenres,
-    setPage,
-    toggleGenre,
-} from "../../store/slices/filterSlice";
+import { clearGenres, toggleGenre } from "../../store/slices/filterSlice";
 
 function MoviesFilters() {
     const dispatch = useAppDispatch();
@@ -31,7 +27,6 @@ function MoviesFilters() {
 
     function handleToggleGenre(genre: GenreType) {
         dispatch(toggleGenre(genre));
-        dispatch(setPage(1));
     }
 
     function handleClearGenres() {
