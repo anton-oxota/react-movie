@@ -22,7 +22,11 @@ function MovieOverview({ overview, poster_path }: MovieOverviewProps) {
                     </div>
                     <div>
                         <h2>Overview</h2>
-                        <p>{overview}</p>
+                        <p>
+                            {overview
+                                ? overview
+                                : "Sorry, this movie has not overview"}
+                        </p>
                     </div>
                 </div>
             </div>

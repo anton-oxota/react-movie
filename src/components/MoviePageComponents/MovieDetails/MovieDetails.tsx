@@ -48,7 +48,9 @@ function MovieDetails({
 
                     <MovieInfoItem title="Release Date" icon={<CalendarIcon />}>
                         <div className={css.text}>
-                            {formatDate(release_date)}
+                            {release_date
+                                ? formatDate(release_date)
+                                : "Unknown"}
                         </div>
                     </MovieInfoItem>
 

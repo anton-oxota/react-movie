@@ -13,18 +13,19 @@ import { useEffect } from "react";
 function MoviesList() {
     const dispatch = useAppDispatch();
 
-    const { page, genres, totalPages } = useAppSelector(
+    const { page, genres, totalPages, sortBy } = useAppSelector(
         (state) => state.filterState
     );
 
     // Fetch movies
     const { data, isPending } = useQuery({
-        queryKey: ["movies", { page, genres }],
+        queryKey: ["movies", { page, genres, sortBy: sortBy?.value }],
         queryFn: () =>
-            getMovies(
+            getMovies({
                 page,
-                genres.map(({ id }) => id)
-            ),
+                genres: genres.map(({ id }) => id),
+                sortBy: sortBy?.value,
+            }),
     });
 
     useEffect(() => {

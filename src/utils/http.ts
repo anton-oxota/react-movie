@@ -35,18 +35,18 @@ export async function getGenres(): Promise<GenreType[]> {
 export type MovieType = {
     adult: boolean;
     backdrop_path: string;
-    genre_ids: number[];
+    genre_ids: number[] | undefined;
     id: number;
     original_language: string;
     original_title: string;
     overview: string;
-    popularity: number;
-    poster_path: string;
-    release_date: Date;
+    popularity?: number;
+    poster_path: string | null;
+    release_date?: Date;
     title: string;
-    video: false;
-    vote_average: number;
-    vote_count: number;
+    video?: false;
+    vote_average?: number;
+    vote_count?: number;
 };
 
 type GetMoviesResponse = {
@@ -54,11 +54,16 @@ type GetMoviesResponse = {
     total_pages: number;
 };
 
-export async function getMovies(
-    page: number,
-    genres?: number[]
-): Promise<GetMoviesResponse> {
-    let url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=popularity.desc`;
+export async function getMovies({
+    page,
+    genres,
+    sortBy,
+}: {
+    page: number;
+    genres?: number[];
+    sortBy?: string;
+}): Promise<GetMoviesResponse> {
+    let url = `${BASE_URL}/discover/movie?include_adult=false&include_video=false&language=en-US&page=${page}&sort_by=${sortBy}`;
 
     if (genres?.length) {
         url += `&with_genres=${genres.join("%2C")}`;
@@ -103,19 +108,19 @@ type SpokenLanguage = {
 
 export type MovieDetailsType = {
     adult: boolean;
-    backdrop_path: string;
+    backdrop_path: string | null;
     belongs_to_collection: null;
     budget: number;
     genres: GenreType[];
     homepage: string;
     id: number;
-    imdb_id: string;
+    imdb_id: string | null;
     origin_country: string[];
     original_language: string;
     original_title: string;
     overview: string;
     popularity: number;
-    poster_path: string;
+    poster_path: string | null;
     production_companies: ProductionCompany[];
     production_countries: ProductionCounty[];
     release_date: string;

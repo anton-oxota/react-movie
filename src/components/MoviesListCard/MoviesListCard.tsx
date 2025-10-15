@@ -18,6 +18,8 @@ function MoviesListCard({
     poster_path,
     id,
 }: MoviesListCardProps) {
+    console.log(genre_ids);
+
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -36,7 +38,11 @@ function MoviesListCard({
         <div onClick={handleGoMoviePage} className={css.card}>
             <h2>{title}</h2>
             <img
-                src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                src={
+                    poster_path
+                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                        : "https://novagenetica.com.np/wp-content/themes/novagentica/assets/images/no-image.jpg"
+                }
                 alt={title}
             />
             <div className={css.info}>
@@ -44,6 +50,7 @@ function MoviesListCard({
                 <div className={css.genres}>
                     Genres:
                     {genres &&
+                        genre_ids &&
                         genre_ids.map((id) => {
                             const genre = genres.find((g) => g.id === id)!;
                             return (

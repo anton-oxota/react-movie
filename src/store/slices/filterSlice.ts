@@ -1,16 +1,22 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 import type { GenreType } from "../../utils/http";
+import type { Option } from "../../components/UI/Dropdown/Dropdown";
 
 type InitialState = {
     page: number;
     totalPages: number | null;
+    sortBy: Option | null;
     genres: GenreType[];
 };
 
 const initialState: InitialState = {
     page: 1,
     totalPages: null,
+    sortBy: {
+        title: "Popularity",
+        value: "popularity.desc",
+    },
     genres: [],
 };
 
@@ -46,9 +52,15 @@ const filterSlice = createSlice({
 
             state.genres = [];
         },
+        setSortBy: (state, action) => {
+            // Reset page
+            state.page = 1;
+
+            state.sortBy = action.payload;
+        },
     },
 });
 
 export default filterSlice.reducer;
-export const { setPage, setTotalPages, toggleGenre, clearGenres } =
+export const { setPage, setTotalPages, toggleGenre, clearGenres, setSortBy } =
     filterSlice.actions;

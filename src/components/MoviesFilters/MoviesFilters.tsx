@@ -9,11 +9,31 @@ import MoviesSidebarFilters from "../MoviesSidebarFilters/MoviesSidebarFilters";
 import FilterBadge from "../UI/FilterBadge/FilterBadge";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import type { GenreType } from "../../utils/http";
-import { clearGenres, toggleGenre } from "../../store/slices/filterSlice";
+import {
+    clearGenres,
+    setSortBy,
+    toggleGenre,
+} from "../../store/slices/filterSlice";
+import Dropdown, { type Option } from "../UI/Dropdown/Dropdown";
+
+const sortOptions: Option[] = [
+    {
+        title: "Popularity",
+        value: "popularity.desc",
+    },
+    {
+        title: "Raiting ↓",
+        value: "vote_average.asc",
+    },
+    {
+        title: "Raiting ↑",
+        value: "vote_average.desc",
+    },
+];
 
 function MoviesFilters() {
     const dispatch = useAppDispatch();
-    const genres = useAppSelector((state) => state.filterState.genres);
+    const { genres, sortBy } = useAppSelector((state) => state.filterState);
 
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
@@ -33,6 +53,10 @@ function MoviesFilters() {
         dispatch(clearGenres());
     }
 
+    function handleSortBy(option: Option) {
+        dispatch(setSortBy(option));
+    }
+
     return (
         <>
             <div className={css.filters}>
@@ -48,11 +72,23 @@ function MoviesFilters() {
                         <button onClick={handleOpenFilters}>
                             <FilterIcon /> Filter
                         </button>
-                        <button>
-                            <SortIcon /> Sort By
-                        </button>
+
+                        {/* <button>
+                            
+                        </button> */}
+                        <Dropdown
+                            title={
+                                <>
+                                    <SortIcon /> Sort By
+                                </>
+                            }
+                            options={sortOptions}
+                            activeOption={sortBy}
+                            onChoose={handleSortBy}
+                        />
                     </div>
                 </div>
+
                 {!!genres.length && (
                     <div className={css.activeFilters}>
                         {genres.map((genre) => (
