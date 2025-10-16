@@ -1,5 +1,7 @@
 import css from "./MoviesListCard.module.css";
 
+import StarIcon from "../../assets/icons/star.svg?react";
+
 import { queryClient, type GenreType, type MovieType } from "../../utils/http";
 import GenreBadge from "../UI/GenreBadge/GenreBadge";
 import { useNavigate } from "react-router";
@@ -8,7 +10,7 @@ import { clearGenres, toggleGenre } from "../../store/slices/homePageSlice";
 
 type MoviesListCardProps = Pick<
     MovieType,
-    "title" | "overview" | "genre_ids" | "poster_path" | "id"
+    "title" | "overview" | "genre_ids" | "poster_path" | "id" | "vote_average"
 >;
 
 function MoviesListCard({
@@ -17,6 +19,7 @@ function MoviesListCard({
     overview,
     poster_path,
     id,
+    vote_average,
 }: MoviesListCardProps) {
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
@@ -63,7 +66,10 @@ function MoviesListCard({
                             );
                         })}
                 </div>
-                <div className={css.raiting}>STARS</div>
+                <div className={css.raiting}>
+                    <StarIcon />
+                    {vote_average?.toFixed(1)}/10
+                </div>
             </div>
         </div>
     );

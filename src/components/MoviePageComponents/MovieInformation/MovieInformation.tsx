@@ -47,6 +47,8 @@ function MovieInformation({
                 <div className={css.informationWrapper}>
                     <MovieInfoItem title="Genres" icon={<ScrollIcon />}>
                         <div className={css.block}>
+                            {!genres.length && "Unknown"}
+
                             {genres.map((genre) => (
                                 <GenreBadge
                                     key={genre.name}
@@ -62,6 +64,8 @@ function MovieInformation({
                         icon={<FilmIcon />}
                     >
                         <div className={css.block}>
+                            {!production_companies.length && "Unknown"}
+
                             {production_companies.map(({ name }) => (
                                 <Badge key={name} title={name} />
                             ))}
@@ -73,6 +77,8 @@ function MovieInformation({
                         icon={<FlagIcon />}
                     >
                         <div className={css.block}>
+                            {!production_countries.length && "Unknown"}
+
                             {production_countries.map(({ name }) => (
                                 <Badge key={name} title={name} />
                             ))}
@@ -84,6 +90,8 @@ function MovieInformation({
                         icon={<EarthIcon />}
                     >
                         <div className={css.block}>
+                            {!spoken_languages.length && "Unknown"}
+
                             {spoken_languages.map(({ english_name }) => (
                                 <Badge
                                     key={english_name}

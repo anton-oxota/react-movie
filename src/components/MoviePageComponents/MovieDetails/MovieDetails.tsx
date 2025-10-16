@@ -59,17 +59,23 @@ function MovieDetails({
                     </MovieInfoItem>
 
                     <MovieInfoItem title="Budget" icon={<DolarIcon />}>
-                        <div className={css.text}>{formatMoney(budget)}</div>
+                        <div className={css.text}>
+                            {budget ? formatMoney(budget) : "Unknown"}
+                        </div>
                     </MovieInfoItem>
 
                     <MovieInfoItem title="Revenu" icon={<DolarIcon />}>
-                        <div className={css.text}>{formatMoney(revenue)}</div>
+                        <div className={css.text}>
+                            {revenue ? formatMoney(revenue) : "Unknown"}
+                        </div>
                     </MovieInfoItem>
 
                     <MovieInfoItem title="Vote Average" icon={<StarIcon />}>
                         <div className={css.vote}>
                             <StarIcon />
-                            <div className={css.text}>{vote_average}</div>
+                            <div className={css.text}>
+                                {vote_average.toFixed(1)}/10
+                            </div>
                             <span>({vote_count} votes)</span>
                         </div>
                     </MovieInfoItem>

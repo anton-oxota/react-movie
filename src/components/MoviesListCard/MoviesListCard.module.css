@@ -96,4 +96,13 @@
 .raiting {
     margin-top: 16px;
     color: #ffffffff;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.raiting svg {
+    width: 20px;
+    height: 20px;
+    stroke: #eab308;
 }
