@@ -6,10 +6,12 @@ import { queryClient } from "./utils/http";
 import MoviePage from "./pages/MoviePage/MoviePage";
 import { Provider } from "react-redux";
 import store from "./store/store";
+import SearchResultPage from "./pages/SearchResultPage/SearchResultPage";
 
 const router = createBrowserRouter([
     { path: "", element: <HomePage /> },
     { path: "movie/:id", element: <MoviePage /> },
+    { path: "results/:search", element: <SearchResultPage /> },
 ]);
 
 function App() {

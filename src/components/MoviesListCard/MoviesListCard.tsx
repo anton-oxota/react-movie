@@ -18,8 +18,6 @@ function MoviesListCard({
     poster_path,
     id,
 }: MoviesListCardProps) {
-    console.log(genre_ids);
-
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 

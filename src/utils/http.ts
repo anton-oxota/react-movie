@@ -154,3 +154,26 @@ export async function getMovieById(id: string): Promise<MovieDetailsType> {
     const data = await respose.json();
     return data;
 }
+
+export async function getMovieByTitle(
+    searchTerm: string
+): Promise<GetMoviesResponse> {
+    const url = `${BASE_URL}/search/movie?query=${searchTerm}&include_adult=false&language=en-US&page=1`;
+
+    const options = {
+        method: "GET",
+        headers: {
+            accept: "application/json",
+            Authorization: AUTHORIZATION,
+        },
+    };
+
+    const response = await fetch(url, options);
+
+    if (!response.ok) {
+        throw new Error(`Can not fetch movies with ${searchTerm} query`);
+    }
+
+    const data = await response.json();
+    return data;
+}
