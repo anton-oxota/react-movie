@@ -6,7 +6,7 @@ import { getMovies } from "../../utils/http";
 import { useQuery } from "@tanstack/react-query";
 import { useAppDispatch, useAppSelector } from "../../store/store";
 import Pagination from "../Pagination/Pagination";
-import { setPage, setTotalPages } from "../../store/slices/filterSlice";
+import { setPage, setTotalPages } from "../../store/slices/homePageSlice";
 import { useEffect } from "react";
 import MoviesList from "../MoviesList/MoviesList";
 
@@ -14,7 +14,7 @@ function HomeMovieListContainer() {
     const dispatch = useAppDispatch();
 
     const { page, genres, totalPages, sortBy } = useAppSelector(
-        (state) => state.filterState
+        (state) => state.homePageState
     );
 
     // Fetch movies

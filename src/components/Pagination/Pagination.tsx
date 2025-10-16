@@ -42,17 +42,13 @@ function createButtons(totalPages: number, activePage: number) {
     return pageNumbersArray;
 }
 
-type MoviesPaginationType = {
+type PaginationType = {
     totalPages: number;
     activePage: number;
     onChangePage: (page: number) => void;
 };
 
-function MoviesPagination({
-    totalPages,
-    activePage,
-    onChangePage,
-}: MoviesPaginationType) {
+function Pagination({ totalPages, activePage, onChangePage }: PaginationType) {
     function handleChangePage(page: number) {
         if (page === 0 || page === totalPages + 1) return;
         onChangePage(page);
@@ -114,4 +110,4 @@ function PaginationMainButton({
     );
 }
 
-export default MoviesPagination;
+export default Pagination;

@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import filterReducer from "./slices/filterSlice";
 import { useDispatch, useSelector } from "react-redux";
+
+import homePageSliceReducer from "./slices/homePageSlice";
+import resultsPageSliceReducer from "./slices/resultsPageSlice";
 
 const store = configureStore({
     reducer: {
-        filterState: filterReducer,
+        homePageState: homePageSliceReducer,
+        resultsPageState: resultsPageSliceReducer,
     },
 });
 

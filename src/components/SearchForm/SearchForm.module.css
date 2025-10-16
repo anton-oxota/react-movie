@@ -1,0 +1,41 @@
+.search {
+    width: inherit;
+    display: flex;
+    gap: 15px;
+}
+
+input {
+    width: 100%;
+    height: 40px;
+    padding: 0 20px;
+    background-color: #000;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    border-radius: 6px;
+
+    border: 1px solid #323743ff;
+    color: white;
+}
+
+.search button {
+    padding: 0 12px;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    background: #636ae8;
+    border: none;
+    border-radius: 6px;
+
+    transition: 0.3s all;
+}
+
+.search button:hover {
+    background: #494ead;
+}

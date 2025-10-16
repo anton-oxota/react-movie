@@ -1,6 +1,5 @@
 import css from "./MoviesFilters.module.css";
 
-import SearchIcon from "../../assets/icons/search.svg?react";
 import FilterIcon from "../../assets/icons/sliders-horizontal.svg?react";
 import SortIcon from "../../assets/icons/arrow-down-up.svg?react";
 
@@ -11,10 +10,13 @@ import { useAppDispatch, useAppSelector } from "../../store/store";
 import type { GenreType } from "../../utils/http";
 import {
     clearGenres,
+    setPage,
     setSortBy,
     toggleGenre,
-} from "../../store/slices/filterSlice";
+} from "../../store/slices/homePageSlice";
 import Dropdown, { type Option } from "../UI/Dropdown/Dropdown";
+import SearchForm from "../SearchForm/SearchForm";
+import { useNavigate } from "react-router";
 
 const sortOptions: Option[] = [
     {
@@ -33,7 +35,9 @@ const sortOptions: Option[] = [
 
 function MoviesFilters() {
     const dispatch = useAppDispatch();
-    const { genres, sortBy } = useAppSelector((state) => state.filterState);
+    const navigate = useNavigate();
+
+    const { genres, sortBy } = useAppSelector((state) => state.homePageState);
 
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
@@ -57,25 +61,24 @@ function MoviesFilters() {
         dispatch(setSortBy(option));
     }
 
+    // Searching
+    function handleSearchFilm(search: string) {
+        if (search.trim()) {
+            dispatch(setPage(1));
+            navigate(`results/${search}`);
+        }
+    }
+
     return (
         <>
             <div className={css.filters}>
                 <div className={css.top}>
-                    <form className={css.search} action="">
-                        <input type="text" placeholder="Search movies..." />
-                        <button type="submit">
-                            <SearchIcon />
-                            Search
-                        </button>
-                    </form>
+                    <SearchForm onSubmit={handleSearchFilm} />
                     <div className={css.actions}>
                         <button onClick={handleOpenFilters}>
                             <FilterIcon /> Filter
                         </button>
 
-                        {/* <button>
-                            
-                        </button> */}
                         <Dropdown
                             title={
                                 <>

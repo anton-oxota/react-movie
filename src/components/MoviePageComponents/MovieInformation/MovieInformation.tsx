@@ -11,7 +11,7 @@ import MovieInfoItem from "../MovieInfoItem/MovieInfoItem";
 import Badge from "../../UI/Badge/Badge";
 import GenreBadge from "../../UI/GenreBadge/GenreBadge";
 
-import { clearGenres, toggleGenre } from "../../../store/slices/filterSlice";
+import { clearGenres, toggleGenre } from "../../../store/slices/homePageSlice";
 import { useAppDispatch } from "../../../store/store";
 import { useNavigate } from "react-router";
 

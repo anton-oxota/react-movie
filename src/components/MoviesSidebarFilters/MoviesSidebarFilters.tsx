@@ -8,7 +8,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { getGenres, type GenreType } from "../../utils/http";
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import { toggleGenre } from "../../store/slices/filterSlice";
+import { toggleGenre } from "../../store/slices/homePageSlice";
 
 type MoviesSidebarFiltersProps = {
     open: boolean;
@@ -23,7 +23,7 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
         queryFn: getGenres,
     });
 
-    const genres = useAppSelector((state) => state.filterState.genres);
+    const genres = useAppSelector((state) => state.homePageState.genres);
 
     function handleToggleGenre(genre: GenreType) {
         dispatch(toggleGenre(genre));

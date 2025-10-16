@@ -1,0 +1,12 @@
+.searchBlock {
+    margin: 20px auto;
+    padding: 16px;
+    background-color: var(--black);
+    border-radius: 10px;
+}
+
+.pagination {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+}

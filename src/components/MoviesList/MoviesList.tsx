@@ -9,6 +9,7 @@ type MoviesListPorps = {
 function MoviesList({ moviesArray }: MoviesListPorps) {
     return (
         <div className={css.list}>
+            {!moviesArray.length && "Sorry, can not find any films"}
             {moviesArray.map((movie) => (
                 <MoviesListCard key={movie.id} {...movie} />
             ))}

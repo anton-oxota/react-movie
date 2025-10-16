@@ -4,7 +4,7 @@ import { queryClient, type GenreType, type MovieType } from "../../utils/http";
 import GenreBadge from "../UI/GenreBadge/GenreBadge";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../store/store";
-import { clearGenres, toggleGenre } from "../../store/slices/filterSlice";
+import { clearGenres, toggleGenre } from "../../store/slices/homePageSlice";
 
 type MoviesListCardProps = Pick<
     MovieType,
@@ -29,7 +29,7 @@ function MoviesListCard({
     }
 
     function handleGoMoviePage() {
-        navigate(`movie/${id}`);
+        navigate(`/movie/${id}`);
     }
 
     return (

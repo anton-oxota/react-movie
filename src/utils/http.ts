@@ -156,9 +156,10 @@ export async function getMovieById(id: string): Promise<MovieDetailsType> {
 }
 
 export async function getMovieByTitle(
-    searchTerm: string
+    searchTerm: string,
+    page: number
 ): Promise<GetMoviesResponse> {
-    const url = `${BASE_URL}/search/movie?query=${searchTerm}&include_adult=false&language=en-US&page=1`;
+    const url = `${BASE_URL}/search/movie?query=${searchTerm}&include_adult=false&language=en-US&page=${page}`;
 
     const options = {
         method: "GET",

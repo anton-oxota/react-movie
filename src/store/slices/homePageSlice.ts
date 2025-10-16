@@ -20,8 +20,8 @@ const initialState: InitialState = {
     genres: [],
 };
 
-const filterSlice = createSlice({
-    name: "filter",
+const homePageSlice = createSlice({
+    name: "homePage",
     initialState,
     reducers: {
         setPage: (state, action) => {
@@ -61,6 +61,6 @@ const filterSlice = createSlice({
     },
 });
 
-export default filterSlice.reducer;
+export default homePageSlice.reducer;
 export const { setPage, setTotalPages, toggleGenre, clearGenres, setSortBy } =
-    filterSlice.actions;
+    homePageSlice.actions;
