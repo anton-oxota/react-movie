@@ -1,12 +1,14 @@
+.resultsPage {
+    padding: 40px 0;
+}
+
 .searchBlock {
-    margin: 20px auto;
+    margin-top: 20px;
     padding: 16px;
     background-color: var(--black);
     border-radius: 10px;
 }
 
-.pagination {
-    margin-top: 40px;
-    display: flex;
-    justify-content: center;
+.resultsList {
+    margin-top: 20px;
 }

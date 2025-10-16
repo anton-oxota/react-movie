@@ -1,13 +1,15 @@
 import css from "./HomeMovieListContainer.module.css";
 
-import Loading from "../UI/Loading/Loading";
-
 import { getMovies } from "../../utils/http";
 import { useQuery } from "@tanstack/react-query";
+
 import { useAppDispatch, useAppSelector } from "../../store/store";
-import Pagination from "../Pagination/Pagination";
 import { setPage, setTotalPages } from "../../store/slices/homePageSlice";
+
 import { useEffect } from "react";
+
+import Loading from "../UI/Loading/Loading";
+import Pagination from "../Pagination/Pagination";
 import MoviesList from "../MoviesList/MoviesList";
 
 function HomeMovieListContainer() {
@@ -54,11 +56,13 @@ function HomeMovieListContainer() {
                 <MoviesList moviesArray={data.results} />
 
                 <div className={css.pagination}>
-                    <Pagination
-                        totalPages={totalPages || 500}
-                        activePage={page}
-                        onChangePage={handleChangePage}
-                    />
+                    {!!data.results.length && (
+                        <Pagination
+                            totalPages={totalPages || 500}
+                            activePage={page}
+                            onChangePage={handleChangePage}
+                        />
+                    )}
                 </div>
             </>
         );

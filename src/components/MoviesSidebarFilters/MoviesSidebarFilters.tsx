@@ -51,10 +51,6 @@ function MoviesSidebarFilters({ open, onClose }: MoviesSidebarFiltersProps) {
                             />
                         ))}
                 </FilterBlock>
-
-                <FilterBlock title="Raiting">
-                    <input type="range" />
-                </FilterBlock>
             </aside>
         </div>
     );

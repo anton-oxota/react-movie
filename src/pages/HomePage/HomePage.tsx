@@ -5,17 +5,19 @@ import HomeMovieListContainer from "../../components/HomeMovieListContainer/Home
 
 function HomePage() {
     return (
-        <div className="container">
-            <h1>Home Page</h1>
+        <section className={css.homePage}>
+            <div className="container">
+                <h1>Home Page</h1>
 
-            <div className={css.moviesFilters}>
-                <MoviesFilters />
-            </div>
+                <div className={css.moviesFilters}>
+                    <MoviesFilters />
+                </div>
 
-            <div className={css.moviesList}>
-                <HomeMovieListContainer />
+                <div className={css.moviesList}>
+                    <HomeMovieListContainer />
+                </div>
             </div>
-        </div>
+        </section>
     );
 }
 
