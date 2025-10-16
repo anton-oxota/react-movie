@@ -20,7 +20,7 @@ function HomeMovieListContainer() {
     );
 
     // Fetch movies
-    const { data, isPending } = useQuery({
+    const { data, isPending, error } = useQuery({
         queryKey: ["movies", { page, genres, sortBy: sortBy?.value }],
         queryFn: () =>
             getMovies({
@@ -48,6 +48,10 @@ function HomeMovieListContainer() {
                 <Loading />
             </div>
         );
+    }
+
+    if (error) {
+        return <div>{error.message}</div>;
     }
 
     if (data) {

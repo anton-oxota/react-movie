@@ -18,7 +18,7 @@ function ResultsMovieListContainer() {
     const { search } = useParams();
     const { page } = useAppSelector((state) => state.resultsPageState);
 
-    const { data, isPending } = useQuery({
+    const { data, isPending, error } = useQuery({
         queryKey: ["search", { search, page }],
         queryFn: () => getMovieByTitle(search || "", page),
     });
@@ -30,6 +30,10 @@ function ResultsMovieListContainer() {
 
     if (isPending) {
         return <Loading />;
+    }
+
+    if (error) {
+        return <div>{error.message}</div>;
     }
 
     if (data) {

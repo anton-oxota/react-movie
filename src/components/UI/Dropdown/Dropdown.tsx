@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import css from "./Dropdown.module.css";
+
+import ChevronDownIcon from "../../../assets/icons/chevron-down.svg?react";
+
+import { useEffect, useRef, useState } from "react";
 
 export type Option = {
     title: string;
@@ -49,8 +52,13 @@ function Dropdown({ options, activeOption, title, onChoose }: DropdownProps) {
 
     return (
         <div className={css.dropdown}>
-            <button onClick={handleToggle} ref={buttonRef}>
+            <button
+                className={isOpen ? css.active : ""}
+                onClick={handleToggle}
+                ref={buttonRef}
+            >
                 {activeOption ? activeOption.title : title}
+                <ChevronDownIcon />
             </button>
             {isOpen && (
                 <div className={css.options} ref={optionsRef}>

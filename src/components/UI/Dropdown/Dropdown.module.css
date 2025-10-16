@@ -5,6 +5,9 @@
 
 .dropdown button {
     width: inherit;
+    display: flex;
+    justify-content: space-between;
+
     padding: 9px;
     font-size: 14px;
     line-height: 22px;
@@ -13,6 +16,14 @@
     background: #636ae8;
     border-radius: 6px;
     border: none;
+}
+
+.dropdown button svg {
+    transition: 0.3s all;
+}
+
+.dropdown button.active svg {
+    transform: rotate(-180deg);
 }
 
 .options {

@@ -13,17 +13,21 @@ import MovieInformation from "../../components/MoviePageComponents/MovieInformat
 function MoviePage() {
     const { id } = useParams();
 
-    const { data, isPending } = useQuery({
+    const { data, isPending, error } = useQuery({
         queryKey: ["movie", { id }],
         queryFn: () => getMovieById(id!),
     });
 
     if (isPending) {
         return (
-            <div className={css.loading}>
+            <div className={css.message}>
                 <Loading />
             </div>
         );
+    }
+
+    if (error) {
+        return <div className={css.message}>{error.message}</div>;
     }
 
     if (data) {
