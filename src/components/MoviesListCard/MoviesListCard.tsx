@@ -2,7 +2,7 @@ import css from "./MoviesListCard.module.css";
 
 import { queryClient, type GenreType, type MovieType } from "../../utils/http";
 import GenreBadge from "../UI/GenreBadge/GenreBadge";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { useAppDispatch } from "../../store/store";
 import { clearGenres, toggleGenre } from "../../store/slices/homePageSlice";
 import StarsRating from "../UI/StarsRating/StarsRating";
@@ -26,28 +26,29 @@ function MoviesListCard({
     const genres = queryClient.getQueryData<GenreType[]>(["genres"]);
 
     function handleSetGenre(genre: GenreType) {
+        navigate("/");
         dispatch(clearGenres());
         dispatch(toggleGenre(genre));
-    }
-
-    function handleGoMoviePage() {
-        navigate(`/movie/${id}`);
     }
 
     return (
         <div className={css.card}>
             <h2>{title}</h2>
-            <img
-                onClick={handleGoMoviePage}
-                src={
-                    poster_path
-                        ? `https://image.tmdb.org/t/p/w500${poster_path}`
-                        : "https://novagenetica.com.np/wp-content/themes/novagentica/assets/images/no-image.jpg"
-                }
-                alt={title}
-            />
+            <Link to={`/movie/${id}`}>
+                <img
+                    src={
+                        poster_path
+                            ? `https://image.tmdb.org/t/p/w500${poster_path}`
+                            : "https://novagenetica.com.np/wp-content/themes/novagentica/assets/images/no-image.jpg"
+                    }
+                    alt={title}
+                />
+            </Link>
+
             <div className={css.info}>
-                <p>{overview}</p>
+                <p>
+                    {overview ? overview : "This movie dont have description"}
+                </p>
                 <div className={css.genres}>
                     Genres:
                     {genres &&
@@ -66,7 +67,7 @@ function MoviesListCard({
                             );
                         })}
                 </div>
-                {vote_average && <StarsRating vote_average={vote_average} />}
+                {!!vote_average && <StarsRating vote_average={vote_average} />}
             </div>
         </div>
     );
