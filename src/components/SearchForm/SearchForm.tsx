@@ -4,9 +4,10 @@ import SearchIcon from "../../assets/icons/search.svg?react";
 
 type SearchForm = {
     onSubmit: (search: string) => void;
+    defaulValue?: string;
 };
 
-function SearchForm({ onSubmit }: SearchForm) {
+function SearchForm({ onSubmit, defaulValue }: SearchForm) {
     function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
         const form = event.target as HTMLFormElement;
@@ -16,7 +17,12 @@ function SearchForm({ onSubmit }: SearchForm) {
 
     return (
         <form className={css.search} action="" onSubmit={handleSubmit}>
-            <input name="search" type="text" placeholder="Search movies..." />
+            <input
+                name="search"
+                type="text"
+                placeholder="Search movies..."
+                defaultValue={defaulValue}
+            />
             <button type="submit">
                 <SearchIcon />
                 Search

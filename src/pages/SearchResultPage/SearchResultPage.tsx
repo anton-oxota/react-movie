@@ -1,12 +1,13 @@
 import css from "./SearchResultPage.module.css";
 
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { useAppDispatch } from "../../store/store";
 import { setPage } from "../../store/slices/resultsPageSlice";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsMovieListContainer from "../../components/ResultsMovieListContainer/ResultsMovieListContainer";
 
 function SearchResultPage() {
+    const { search } = useParams();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -24,7 +25,10 @@ function SearchResultPage() {
                 <h1>Results</h1>
 
                 <div className={css.searchBlock}>
-                    <SearchForm onSubmit={handleSearchFilm} />
+                    <SearchForm
+                        onSubmit={handleSearchFilm}
+                        defaulValue={search}
+                    />
                 </div>
 
                 <div className={css.resultsList}>
