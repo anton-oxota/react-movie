@@ -16,11 +16,19 @@ import HomePage from "./pages/HomePage/HomePage";
 import MoviePage from "./pages/MoviePage/MoviePage";
 import SearchResultPage from "./pages/SearchResultPage/SearchResultPage";
 import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
+import RootLayout from "./pages/_layouts/RootLayout";
 
 const router = createBrowserRouter([
-    { path: "", element: <HomePage /> },
-    { path: "movie/:id", element: <MoviePage /> },
-    { path: "results/:search", element: <SearchResultPage /> },
+    {
+        path: "",
+        element: <RootLayout />,
+        children: [
+            { index: true, element: <HomePage /> },
+            { path: "movie/:id", element: <MoviePage /> },
+            { path: "results/:search", element: <SearchResultPage /> },
+        ],
+    },
+
     { path: "*", element: <NotFoundPage /> },
 ]);
 

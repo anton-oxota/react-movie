@@ -1,0 +1,35 @@
+.header {
+    padding: 14px 0;
+    background: var(--black);
+}
+
+.headerWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav {
+    margin-left: 50%;
+}
+
+.nav ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.nav a {
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 400;
+    color: #b7b7b7;
+    text-decoration: none;
+
+    transition: 0.3s all;
+}
+.nav a:hover,
+.nav a.active {
+    color: #f3f4f6;
+}
