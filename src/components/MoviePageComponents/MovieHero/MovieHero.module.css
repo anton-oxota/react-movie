@@ -43,3 +43,14 @@
     z-index: -1;
     filter: blur(10px) brightness(70%);
 }
+
+@media screen and (max-width: 768px) {
+    .hero h1 {
+        font-size: 30px;
+    }
+
+    .hero h3 {
+        margin-top: 0;
+        font-size: 17px;
+    }
+}

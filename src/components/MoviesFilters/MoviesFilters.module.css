@@ -49,3 +49,15 @@
 
     gap: 8px;
 }
+
+@media screen and (max-width: 993px) {
+    .top {
+        flex-wrap: wrap;
+    }
+
+    .actions {
+        width: 100%;
+        margin-left: unset;
+        justify-content: space-between;
+    }
+}

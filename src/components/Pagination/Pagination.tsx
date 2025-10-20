@@ -63,19 +63,25 @@ function Pagination({ totalPages, activePage, onChangePage }: PaginationType) {
                 <LeftArrowIcon />
                 Previous
             </button>
-            {createButtons(totalPages, activePage).map((pageNumber, i) => {
-                if (typeof pageNumber === "string") {
-                    return <div key={pageNumber + i}>{pageNumber}</div>;
-                }
-                return (
-                    <PaginationMainButton
-                        key={pageNumber}
-                        isActive={activePage === pageNumber}
-                        page={pageNumber}
-                        onClick={() => handleChangePage(pageNumber)}
-                    />
-                );
-            })}
+            <div className={css.pageButtons}>
+                {createButtons(totalPages, activePage).map((pageNumber, i) => {
+                    if (typeof pageNumber === "string") {
+                        return <div key={pageNumber + i}>{pageNumber}</div>;
+                    }
+                    return (
+                        <PaginationMainButton
+                            key={pageNumber}
+                            isActive={activePage === pageNumber}
+                            page={pageNumber}
+                            onClick={() => handleChangePage(pageNumber)}
+                        />
+                    );
+                })}
+            </div>
+            <div className={css.pageButtonsSm}>
+                {activePage} of {totalPages}
+            </div>
+
             <button
                 className={css.sideButton}
                 onClick={() => handleChangePage(activePage + 1)}

@@ -41,7 +41,27 @@
     transition: 0.3s all;
 }
 
+.pageButtons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pageButtonsSm {
+    display: none;
+}
+
 .mainButton.active,
 .mainButton:hover {
     background: #636ae8;
+}
+
+@media screen and (max-width: 576px) {
+    .pageButtons {
+        display: none;
+    }
+
+    .pageButtonsSm {
+        display: block;
+    }
 }

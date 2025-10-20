@@ -105,3 +105,13 @@
     flex-wrap: wrap;
     gap: 10px 5px;
 }
+
+@media screen and (max-width: 993px) {
+    .card h2 {
+        opacity: 1;
+    }
+
+    .info {
+        opacity: 1;
+    }
+}
