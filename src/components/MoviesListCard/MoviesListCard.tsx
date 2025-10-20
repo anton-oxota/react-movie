@@ -1,12 +1,11 @@
 import css from "./MoviesListCard.module.css";
 
-import StarIcon from "../../assets/icons/star.svg?react";
-
 import { queryClient, type GenreType, type MovieType } from "../../utils/http";
 import GenreBadge from "../UI/GenreBadge/GenreBadge";
 import { useNavigate } from "react-router";
 import { useAppDispatch } from "../../store/store";
 import { clearGenres, toggleGenre } from "../../store/slices/homePageSlice";
+import StarsRating from "../UI/StarsRating/StarsRating";
 
 type MoviesListCardProps = Pick<
     MovieType,
@@ -66,10 +65,7 @@ function MoviesListCard({
                             );
                         })}
                 </div>
-                <div className={css.raiting}>
-                    <StarIcon />
-                    {vote_average?.toFixed(1)}/10
-                </div>
+                {vote_average && <StarsRating vote_average={vote_average} />}
             </div>
         </div>
     );

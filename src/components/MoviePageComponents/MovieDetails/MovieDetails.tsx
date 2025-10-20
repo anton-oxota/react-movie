@@ -4,7 +4,7 @@ import CheckIcon from "../../../assets/icons/circle-check-big.svg?react";
 import CalendarIcon from "../../../assets/icons/calendar.svg?react";
 import ClockIcon from "../../../assets/icons/clock.svg?react";
 import DolarIcon from "../../../assets/icons/dollar-sign.svg?react";
-import StarIcon from "../../../assets/icons/star.svg?react";
+import StarIcon from "../../../assets/icons/stars/star.svg?react";
 import MonitorIcon from "../../../assets/icons/monitor-play.svg?react";
 import FilmIcon from "../../../assets/icons/film.svg?react";
 
@@ -70,9 +70,12 @@ function MovieDetails({
                         </div>
                     </MovieInfoItem>
 
-                    <MovieInfoItem title="Vote Average" icon={<StarIcon />}>
+                    <MovieInfoItem
+                        title="Vote Average"
+                        icon={<StarIcon width={24} height={24} fill="white" />}
+                    >
                         <div className={css.vote}>
-                            <StarIcon />
+                            <StarIcon width={24} height={24} />
                             <div className={css.text}>
                                 {vote_average.toFixed(1)}/10
                             </div>

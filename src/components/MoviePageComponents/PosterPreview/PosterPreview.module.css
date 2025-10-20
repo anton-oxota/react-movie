@@ -1,0 +1,22 @@
+/* --- Poster --- */
+.poster {
+    width: 300px;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.poster img {
+    width: 100%;
+}
+
+.posterImg {
+    position: relative;
+    z-index: 10;
+}
+
+.posterBlur {
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: blur(40px);
+}
