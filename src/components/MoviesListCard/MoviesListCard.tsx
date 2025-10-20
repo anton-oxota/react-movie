@@ -35,9 +35,10 @@ function MoviesListCard({
     }
 
     return (
-        <div onClick={handleGoMoviePage} className={css.card}>
+        <div className={css.card}>
             <h2>{title}</h2>
             <img
+                onClick={handleGoMoviePage}
                 src={
                     poster_path
                         ? `https://image.tmdb.org/t/p/w500${poster_path}`
