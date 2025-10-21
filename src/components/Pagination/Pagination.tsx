@@ -63,6 +63,8 @@ function Pagination({ totalPages, activePage, onChangePage }: PaginationType) {
                 <LeftArrowIcon />
                 Previous
             </button>
+
+            {/* Default Buttons */}
             <div className={css.pageButtons}>
                 {createButtons(totalPages, activePage).map((pageNumber, i) => {
                     if (typeof pageNumber === "string") {
@@ -78,8 +80,19 @@ function Pagination({ totalPages, activePage, onChangePage }: PaginationType) {
                     );
                 })}
             </div>
+
+            {/* Sm Screan Buttons */}
             <div className={css.pageButtonsSm}>
-                {activePage} of {totalPages}
+                <input
+                    onBlur={(event) => {
+                        onChangePage(+event.target.value);
+                    }}
+                    min={1}
+                    max={totalPages}
+                    type="number"
+                    defaultValue={activePage}
+                />
+                of {totalPages}
             </div>
 
             <button

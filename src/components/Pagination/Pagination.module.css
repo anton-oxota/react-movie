@@ -51,6 +51,34 @@
     display: none;
 }
 
+.pageButtonsSm input {
+    margin-right: 8px;
+    width: 45px;
+
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 500;
+    color: #ffffff;
+    text-align: center;
+
+    background-color: transparent;
+    border: 1px solid #323743ff;
+    border-radius: 6px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    appearance: none;
+    -moz-appearance: textfield;
+}
+
 .mainButton.active,
 .mainButton:hover {
     background: #636ae8;
