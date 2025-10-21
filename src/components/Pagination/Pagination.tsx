@@ -85,6 +85,16 @@ function Pagination({ totalPages, activePage, onChangePage }: PaginationType) {
             <div className={css.pageButtonsSm}>
                 <input
                     onBlur={(event) => {
+                        const pageNumber = +event.target.value;
+
+                        if (pageNumber < 1) {
+                            event.target.value = "1";
+                        }
+
+                        if (pageNumber > totalPages) {
+                            event.target.value = totalPages.toString();
+                        }
+
                         onChangePage(+event.target.value);
                     }}
                     min={1}
