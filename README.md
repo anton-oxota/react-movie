@@ -13,7 +13,7 @@ It demonstrates core front-end development practices such as component-based arc
 
 ## 🌐 Live Demo
 
-https://your-movie-app-demo.netlify.app/
+https://ao-react-movie.netlify.app/
 
 ---
 
