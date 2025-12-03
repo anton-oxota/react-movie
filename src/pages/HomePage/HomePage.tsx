@@ -34,7 +34,7 @@ function HomePage() {
         const genres = data?.filter((genre) => urlGenres.includes(genre.name));
 
         dispatch(setGenres(genres));
-    }, [isPending, data, setSearchParams, dispatch]);
+    }, [isPending, data, dispatch]);
 
     // Set Url query based on redux state
     useEffect(() => {
@@ -51,7 +51,7 @@ function HomePage() {
         if (genres.length)
             params.genres = genres.map(({ name }) => name).join(" ");
 
-        setSearchParams(params);
+        setSearchParams(params, { replace: true });
     }, [page, sortBy, genres, isPending, setSearchParams]);
 
     return (

@@ -25,15 +25,18 @@ function SearchResultPage() {
     }
 
     useEffect(() => {
-        setSearchParams((searchParams) => {
-            if (page !== 1) {
-                searchParams.set("page", page.toString());
-            } else {
-                searchParams.delete("page");
-            }
+        setSearchParams(
+            (searchParams) => {
+                if (page !== 1) {
+                    searchParams.set("page", page.toString());
+                } else {
+                    searchParams.delete("page");
+                }
 
-            return searchParams;
-        });
+                return searchParams;
+            },
+            { replace: true },
+        );
     }, [page, setSearchParams]);
 
     return (
