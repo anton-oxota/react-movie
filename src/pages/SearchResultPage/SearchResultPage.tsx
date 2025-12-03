@@ -1,15 +1,20 @@
 import css from "./SearchResultPage.module.css";
 
-import { useNavigate, useParams } from "react-router";
-import { useAppDispatch } from "../../store/store";
+import { useNavigate, useParams, useSearchParams } from "react-router";
+import { useAppDispatch, useAppSelector } from "../../store/store";
 import { setPage } from "../../store/slices/resultsPageSlice";
 import SearchForm from "../../components/SearchForm/SearchForm";
 import ResultsMovieListContainer from "../../components/ResultsMovieListContainer/ResultsMovieListContainer";
+import { useEffect } from "react";
 
 function SearchResultPage() {
     const { search } = useParams();
+
+    const setSearchParams = useSearchParams()[1];
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
+
+    const { page } = useAppSelector((state) => state.resultsPageState);
 
     // Searching
     function handleSearchFilm(search: string) {
@@ -18,6 +23,18 @@ function SearchResultPage() {
             navigate(`/results/${search}`);
         }
     }
+
+    useEffect(() => {
+        setSearchParams((searchParams) => {
+            if (page !== 1) {
+                searchParams.set("page", page.toString());
+            } else {
+                searchParams.delete("page");
+            }
+
+            return searchParams;
+        });
+    }, [page, setSearchParams]);
 
     return (
         <section className={css.resultsPage}>

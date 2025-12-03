@@ -1,11 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { getPageFromUrl } from "../../utils/url";
 
 type InitialState = {
     page: number;
 };
 
+const initialPage = +getPageFromUrl() || 1;
+
 const initialState: InitialState = {
-    page: 1,
+    page: initialPage,
 };
 
 const resultsPageSlice = createSlice({

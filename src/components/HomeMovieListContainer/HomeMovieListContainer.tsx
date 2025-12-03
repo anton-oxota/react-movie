@@ -57,6 +57,7 @@ function HomeMovieListContainer() {
     if (data) {
         return (
             <>
+                <MoviesList moviesArray={data.results} />
                 <div className={css.pagination}>
                     {!!data.results.length && (
                         <Pagination
@@ -66,7 +67,6 @@ function HomeMovieListContainer() {
                         />
                     )}
                 </div>
-                <MoviesList moviesArray={data.results} />
             </>
         );
     }
