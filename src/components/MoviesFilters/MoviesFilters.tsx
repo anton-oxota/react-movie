@@ -16,11 +16,10 @@ import {
 } from "../../store/slices/homePageSlice";
 import Dropdown, { type Option } from "../UI/Dropdown/Dropdown";
 import SearchForm from "../SearchForm/SearchForm";
-import { useNavigate, useSearchParams } from "react-router";
+import { useNavigate } from "react-router";
 import { sortOptions } from "../../utils/filtersData";
 
 function MoviesFilters() {
-    const [, setSearchParams] = useSearchParams();
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
 
@@ -46,10 +45,6 @@ function MoviesFilters() {
 
     function handleSortBy(option: Option) {
         dispatch(setSortBy(option));
-        setSearchParams((searchParams) => {
-            searchParams.set("sortby", option.value);
-            return searchParams;
-        });
     }
 
     // Searching

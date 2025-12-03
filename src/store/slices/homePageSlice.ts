@@ -3,7 +3,7 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import type { GenreType } from "../../utils/http";
 import type { Option } from "../../components/UI/Dropdown/Dropdown";
 import { sortOptions } from "../../utils/filtersData";
-import { getSortByFromUrl } from "../../utils/url";
+import { getPageFromUrl, getSortByFromUrl } from "../../utils/url";
 
 type InitialState = {
     page: number;
@@ -11,6 +11,8 @@ type InitialState = {
     sortBy: Option | null;
     genres: GenreType[];
 };
+
+const initialPage = +getPageFromUrl() || 1;
 
 const initialSortBy = sortOptions.find(
     (option) => option.value === getSortByFromUrl(),
@@ -20,7 +22,7 @@ const initialSortBy = sortOptions.find(
 };
 
 const initialState: InitialState = {
-    page: 1,
+    page: initialPage,
     totalPages: null,
     sortBy: initialSortBy,
     genres: [],
@@ -52,6 +54,9 @@ const homePageSlice = createSlice({
                 state.genres.push(action.payload);
             }
         },
+        setGenres: (state, action) => {
+            state.genres = action.payload;
+        },
         clearGenres: (state) => {
             // Reset page
             state.page = 1;
@@ -68,5 +73,11 @@ const homePageSlice = createSlice({
 });
 
 export default homePageSlice.reducer;
-export const { setPage, setTotalPages, toggleGenre, clearGenres, setSortBy } =
-    homePageSlice.actions;
+export const {
+    setPage,
+    setTotalPages,
+    toggleGenre,
+    setGenres,
+    clearGenres,
+    setSortBy,
+} = homePageSlice.actions;

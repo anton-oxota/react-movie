@@ -35,7 +35,7 @@ function createButtons(totalPages: number, activePage: number) {
             totalPages - 3,
             totalPages - 2,
             totalPages - 1,
-            totalPages
+            totalPages,
         );
     }
 

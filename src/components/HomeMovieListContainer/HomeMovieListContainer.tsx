@@ -16,7 +16,7 @@ function HomeMovieListContainer() {
     const dispatch = useAppDispatch();
 
     const { page, genres, totalPages, sortBy } = useAppSelector(
-        (state) => state.homePageState
+        (state) => state.homePageState,
     );
 
     // Fetch movies
@@ -33,7 +33,7 @@ function HomeMovieListContainer() {
     useEffect(() => {
         if (data?.total_pages) {
             dispatch(
-                setTotalPages(data.total_pages > 500 ? 500 : data.total_pages)
+                setTotalPages(data.total_pages > 500 ? 500 : data.total_pages),
             );
         }
     }, [dispatch, data?.total_pages]);
@@ -57,8 +57,6 @@ function HomeMovieListContainer() {
     if (data) {
         return (
             <>
-                <MoviesList moviesArray={data.results} />
-
                 <div className={css.pagination}>
                     {!!data.results.length && (
                         <Pagination
@@ -68,6 +66,7 @@ function HomeMovieListContainer() {
                         />
                     )}
                 </div>
+                <MoviesList moviesArray={data.results} />
             </>
         );
     }
