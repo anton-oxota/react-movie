@@ -2,6 +2,8 @@ import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 import type { GenreType } from "../../utils/http";
 import type { Option } from "../../components/UI/Dropdown/Dropdown";
+import { sortOptions } from "../../utils/filtersData";
+import { getSortByFromUrl } from "../../utils/url";
 
 type InitialState = {
     page: number;
@@ -10,13 +12,17 @@ type InitialState = {
     genres: GenreType[];
 };
 
+const initialSortBy = sortOptions.find(
+    (option) => option.value === getSortByFromUrl(),
+) || {
+    title: "Popularity",
+    value: "popularity.desc",
+};
+
 const initialState: InitialState = {
     page: 1,
     totalPages: null,
-    sortBy: {
-        title: "Popularity",
-        value: "popularity.desc",
-    },
+    sortBy: initialSortBy,
     genres: [],
 };
 
@@ -35,12 +41,12 @@ const homePageSlice = createSlice({
             state.page = 1;
 
             const isGenreExist = state.genres.some(
-                ({ id }) => id === action.payload.id
+                ({ id }) => id === action.payload.id,
             );
 
             if (isGenreExist) {
                 state.genres = state.genres.filter(
-                    ({ id }) => id !== action.payload.id
+                    ({ id }) => id !== action.payload.id,
                 );
             } else {
                 state.genres.push(action.payload);
