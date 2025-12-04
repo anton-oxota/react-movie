@@ -1,7 +1,6 @@
 import css from "./Dropdown.module.css";
 
 import ChevronDownIcon from "../../../assets/icons/chevron-down.svg?react";
-
 import { useEffect, useRef, useState } from "react";
 
 export type Option = {
@@ -17,51 +16,43 @@ type DropdownProps = {
 };
 
 function Dropdown({ options, activeOption, title, onChoose }: DropdownProps) {
-    const [isOpen, setIsOpen] = useState(false);
-    const optionsRef = useRef<HTMLDivElement>(null);
-    const buttonRef = useRef<HTMLButtonElement>(null);
+    const [isOpen, setIsOpen] = useState(true);
+
+    const wrapperRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
-        function test(event: PointerEvent) {
+        function handleClickOutside(event: MouseEvent) {
             if (
-                event.target !== buttonRef.current &&
-                event.target !== optionsRef.current
+                wrapperRef.current &&
+                !wrapperRef.current.contains(event.target as Node)
             ) {
-                handleClose();
+                setIsOpen(false);
             }
         }
 
-        document.addEventListener("click", test);
-
-        return () => {
-            document.removeEventListener("click", test);
-        };
-    }, [isOpen]);
+        document.addEventListener("mousedown", handleClickOutside);
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
 
     function handleToggle() {
         setIsOpen((prev) => !prev);
     }
 
-    function handleClose() {
+    function handleClick(option: Option) {
+        onChoose(option);
         setIsOpen(false);
     }
 
-    function handleClick(option: Option) {
-        onChoose(option);
-    }
-
     return (
-        <div className={css.dropdown}>
-            <button
-                className={isOpen ? css.active : ""}
-                onClick={handleToggle}
-                ref={buttonRef}
-            >
+        <div className={css.dropdown} ref={wrapperRef}>
+            <button className={isOpen ? css.active : ""} onClick={handleToggle}>
                 {activeOption ? activeOption.title : title}
                 <ChevronDownIcon />
             </button>
+
             {isOpen && (
-                <div className={css.options} ref={optionsRef}>
+                <div className={css.options}>
                     <h4>Sort Options</h4>
 
                     <ul>
@@ -70,13 +61,13 @@ function Dropdown({ options, activeOption, title, onChoose }: DropdownProps) {
 
                             return (
                                 <li
+                                    key={value}
                                     className={
                                         value === activeOption?.value
                                             ? css.active
                                             : ""
                                     }
                                     onClick={() => handleClick(option)}
-                                    key={value}
                                 >
                                     {title}
                                 </li>
