@@ -1,6 +1,6 @@
 import css from "./MovieOverview.module.css";
 
-import type { MovieDetailsType } from "../../../../utils/http";
+import type { MovieDetailsType } from "../../../movies/api/movies.types";
 import PosterPreview from "../PosterPreview/PosterPreview";
 
 type MovieOverviewProps = Pick<MovieDetailsType, "overview" | "poster_path">;

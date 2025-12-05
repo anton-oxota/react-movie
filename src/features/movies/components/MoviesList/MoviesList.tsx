@@ -1,6 +1,7 @@
-import type { MovieType } from "../../../../utils/http";
-import MoviesListCard from "../MoviesListCard/MoviesListCard";
 import css from "./MoviesList.module.css";
+
+import type { MovieType } from "../../api/movies.types";
+import MoviesListCard from "../MoviesListCard/MoviesListCard";
 
 type MoviesListPorps = {
     moviesArray: MovieType[];

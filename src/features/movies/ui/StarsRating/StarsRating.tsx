@@ -4,7 +4,7 @@ import StarIcon from "../../../../assets/icons/stars/star.svg?react";
 import StarFilledIcon from "../../../../assets/icons/stars/star-filled.svg?react";
 import StarHalfIcon from "../../../../assets/icons/stars/star-half.svg?react";
 
-import type { MovieType } from "../../../../utils/http";
+import type { MovieType } from "../../api/movies.types";
 
 type StarsRatingProps = Required<Pick<MovieType, "vote_average">>;
 

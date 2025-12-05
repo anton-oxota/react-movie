@@ -1,5 +1,5 @@
-import type { MovieDetailsType } from "../../../../utils/http";
 import css from "./MovieHero.module.css";
+import type { MovieDetailsType } from "../../../movies/api/movies.types";
 
 type MovieHeroProps = Pick<
     MovieDetailsType,

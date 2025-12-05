@@ -5,7 +5,10 @@ import ScrollIcon from "../../../../assets/icons/scroll-text.svg?react";
 import FlagIcon from "../../../../assets/icons/flag.svg?react";
 import EarthIcon from "../../../../assets/icons/earth.svg?react";
 
-import type { GenreType, MovieDetailsType } from "../../../../utils/http";
+import type {
+    GenreType,
+    MovieDetailsType,
+} from "../../../movies/api/movies.types";
 
 import MovieInfoItem from "../MovieInfoItem/MovieInfoItem";
 import Badge from "../../../../shared/ui/Badge/Badge";
