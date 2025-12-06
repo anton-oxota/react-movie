@@ -6,14 +6,17 @@ import { useQuery } from "@tanstack/react-query";
 import { useAppDispatch, useAppSelector } from "../../../../app/store";
 import { setPage, setTotalPages } from "../../model/homePageSlice";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 import Loading from "../../../../shared/ui/Loading/Loading";
 import Pagination from "../../../../shared/components/Pagination/Pagination";
 import MoviesList from "../MoviesList/MoviesList";
+import { scrollToElement } from "../../utils/scrollToElement";
 
 function HomeMovieListContainer() {
     const dispatch = useAppDispatch();
+
+    const movieListRef = useRef<HTMLDivElement>(null);
 
     const { page, genres, totalPages, sortBy } = useAppSelector(
         (state) => state.homePageState,
@@ -40,6 +43,7 @@ function HomeMovieListContainer() {
 
     function handleChangePage(page: number) {
         dispatch(setPage(page));
+        scrollToElement(movieListRef, 20);
     }
 
     if (isPending) {
@@ -57,7 +61,7 @@ function HomeMovieListContainer() {
     if (data) {
         return (
             <>
-                <MoviesList moviesArray={data.results} />
+                <MoviesList moviesArray={data.results} ref={movieListRef} />
                 <div className={css.pagination}>
                     {!!data.results.length && (
                         <Pagination
