@@ -16,7 +16,11 @@ function MovieHero({
         <div className={css.hero}>
             <h1>{title}</h1>
             <h3>{tagline}</h3>
-            {homepage && <a href={homepage}>Visit Homepage</a>}
+            {homepage && (
+                <a href={homepage} target="_blank">
+                    Visit Homepage
+                </a>
+            )}
             {backdrop_path && (
                 <img
                     src={`https://image.tmdb.org/t/p/w500${backdrop_path}`}
